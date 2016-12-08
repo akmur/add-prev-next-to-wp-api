@@ -65,7 +65,12 @@ function retrieve_prev_post( $object, $request ) {
     $post = get_post( $post_id );
     $prev_post = get_previous_post();
     if ( ! empty( $prev_post ) ) {
-    	return $prev_post->ID;
+          $prev_object = (object) [
+		  'id' => $prev_post->ID,
+    'slug' => $prev_post->post_name,
+    'title' => $prev_post->post_title,
+  ];
+    	return $prev_object;
     }
 }
 
@@ -80,7 +85,12 @@ function retrieve_next_post( $object, $request ) {
     $post = get_post( $post_id );
     $next_post = get_next_post();
     if ( ! empty( $next_post ) ) {
-    	return $next_post->ID;
+                  $next_object = (object) [
+    'id' => $next_post->ID,
+	'slug' => $next_post->post_name,
+    'title' => $next_post->post_title,
+  ];
+    	return $next_object;
     }
     
 }
